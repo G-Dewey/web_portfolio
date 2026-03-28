@@ -1,2 +1,14 @@
-RewriteEngine On
-RewriteRule ^(.*)$ [R=301,L]
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # 1. Route all virtual URLs to index.php (Standard Front Controller pattern)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [QSA,L]
+
+    # 2. Block direct URL access to any .php file EXCEPT index.php
+    # This checks if the original request was for a .php file
+    RewriteCond %{THE_REQUEST} \s/+(.+)\.php[\s?] [NC]
+    RewriteCond %{REQUEST_URI} !^/index\.php$ [NC]
+    RewriteRule ^ - [F,L]
+</IfModule>
