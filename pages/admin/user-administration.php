@@ -59,7 +59,10 @@
 
                             <div class="mb-3">
                                 <label for="create-password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="create-password" name="password" required>
+                                <input type="password" class="form-control" id="create-password" name="password" 
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}" 
+                                title="Password must be at least 8 characters long and include at least one uppercase letter, lowercase letter, number, one special character."
+                                required>
                             </div>
 
                             <div class="mb-3">
@@ -132,7 +135,10 @@
                             <div id="password-container" style="display: none;">
                                 <div class="mb-3">
                                     <label for="edit-password" class="form-label">New Password</label>
-                                    <input type="password" class="form-control" id="edit-password" name="new-password">
+                                    <input type="password" class="form-control" id="edit-password" name="new-password"
+                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}" 
+                                    title="Password must be at least 8 characters long and include at least one uppercase letter, lowercase letter, number, one special character."
+                                    >
                                 </div>
                             </div>
                         </div>

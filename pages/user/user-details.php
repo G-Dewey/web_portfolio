@@ -1,16 +1,23 @@
+<!-- Karting Pro - Your Details -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karting Pro - Your Details</title>
+    
+    <!-- Bootstrap and Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom styles -->
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/navbar.css">
 </head>
+
 <body>
-<nav role="navigation" aria-label="Main Navigation">
+    <!-- Navigation - show admin navbar for admins, regular navbar for users -->
+    <nav role="navigation" aria-label="Main Navigation">
         <?PHP 
         if ($_SESSION["role"] == "admin"){
             include 'assets/admin-navbar.php';
@@ -20,7 +27,9 @@
         }
         ?>
     </nav>
-<div class="main-container d-flex justify-content-center">
+
+    <!-- Main content -->
+    <div class="main-container d-flex justify-content-center">
         <main class="main-content primary-tile rounded shadow d-flex flex-column p-4 w-100" style="max-width: 1200px;">  
             <div class="p-2 container-fluid">
                 <header class="row mb-4">
@@ -28,6 +37,7 @@
                 </header>
                 <hr aria-hidden="true">
                 
+                <!-- Profile information - dynamically populated -->
                 <section aria-labelledby="profile-info-heading" aria-live="polite">
                     <h2 id="profile-info-heading" class="visually-hidden">Profile Information</h2>
                     
@@ -42,12 +52,16 @@
         </main>
     </div>
 
+    <!-- External libraries -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <!-- Custom scripts -->
     <script src="scripts/theme.js"></script>
     <script src="scripts/navbar.js"></script>
     <script src="scripts/user-details.js"></script>
     
+    <!-- Load user details on page ready -->
     <script>
         $(document).ready(function() {
             populateDetails();
