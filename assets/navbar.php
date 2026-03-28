@@ -15,10 +15,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       
       <ul class="navbar-nav mx-auto navbar-options rounded-pill d-flex pb-0 p-xxl-1 shadow-sm">
-        <li class="nav-item"><a class="nav-link active px-3 py-xxl-2" href="<?php echo BASE_URL; ?>/dashboard">Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link active px-3 py-xxl-2" href="<?php echo BASE_URL; ?>/view-enrollments">Your Enrollements</a></li>
-        <li class="nav-item"><a class="nav-link active px-3 py-xxl-2" href="<?php echo BASE_URL; ?>/explore-courses">Explore Courses</a></li>
-        <li class="nav-item"><a class="nav-link active px-3 py-xxl-2" href="<?php echo BASE_URL; ?>/user-details">Your Details</a></li>
+        <li class="nav-item"><a class="nav-link active px-3 py-xxl-2" href="/dashboard">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link active px-3 py-xxl-2" href="/view-enrollments">Your Enrollements</a></li>
+        <li class="nav-item"><a class="nav-link active px-3 py-xxl-2" href="/explore-courses">Explore Courses</a></li>
+        <li class="nav-item"><a class="nav-link active px-3 py-xxl-2" href="/user-details">Your Details</a></li>
       </ul>
 
       <div class="d-flex justify-content-xxl-end mt-0 mt-xxl-0"> 
