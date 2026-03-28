@@ -1,13 +1,15 @@
+/* Dashboard card with hover animation */
 .dashboard-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-decoration: none; /* Removes underline from links */
-    color: inherit;       /* Keeps text color consistent */
+    text-decoration: none;
+    color: inherit;
     display: block;
     cursor: pointer;
 }
 
+/* Card lift effect on hover */
 .dashboard-card:hover {
-    transform: translateY(-4px); /* The "lift" effect */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2) !important; /* Enhanced shadow */
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2) !important;
     color: inherit;
 }

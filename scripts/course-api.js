@@ -1,9 +1,12 @@
 // create CARD
+// Generates a jQuery card element based on course data and enrollment status
 function createCard(course, archive=false){
+    // Apply filters for search, difficulty level, and date/archive status
     if (!(searchFilter(course) && levelFilter(course))) {return false;}
     if (!afterToday(course.date) && !archive) {return false;}
     if (afterToday(course.date) && archive) {return false;}
 
+    // Define the card's HTML template
     const $card = $(`
         <div class="card course-card p-0 mb-4">
             <div class="card-body d-flex flex-column">
@@ -31,11 +34,11 @@ function createCard(course, archive=false){
         </div>
     `);
 
-    
+    // Set unique ID and populate title
     $card.attr('id', genCardID(course.courseID));
-
     $card.find('.card-title').text(course.title || "Untitled Course");
     
+    // Determine and apply difficulty label/style
     const diffLevel = course.level !== undefined ? course.level : 0;
     const diffData = difficultyMap[diffLevel] || difficultyMap[0];
 
@@ -43,6 +46,7 @@ function createCard(course, archive=false){
         .text(diffData.label)
         .addClass(diffData.class);
 
+    // Convert minutes to hours and handle unit pluralization
     hrsDuration = +(course.duration/60).toFixed(1);
 
     if (hrsDuration == 1){
@@ -52,22 +56,22 @@ function createCard(course, archive=false){
         $card.find('.time-unit').text("hours")
     }
 
-
+    // Populate remaining course details
     $card.find('.description').text(course.description)
     $card.find('.duration').text(hrsDuration || "0");
     $card.find('.enrolled').text(course.enrolled || "0");
     $card.find('.capacity').text(course.capacity || "0");
     $card.find('.date').text(formateDate(course.date) || "00/00/0000");
 
-    // Button control
+    // Button control: Handle buttons based on whether the view is an archive or active
     const $button = $card.find('button')
     if (archive){
-        $button.remove();
+        $button.remove(); // No buttons for archived courses
     }
     else{
         $button.attr('course-id', course.courseID);
 
-        console.log("here");
+        // Check enrollment status via API to determine if the user can Enroll or Unenroll
         $.ajax({
             url: 'api/check-enrollment',
             method: 'POST',
@@ -75,13 +79,13 @@ function createCard(course, archive=false){
             dataType: 'json',
             success: function(response) {
                 if (response.isEnrolled === true) {
-                    // User is already enrolled
+                    // Configure button for unenrolling
                     $button.text('Unenroll');
                     $button.removeClass('btn-primary');
                     $button.addClass('btn-danger');
                     $button.addClass('course-unenroll-btn');
                 } else {
-                    // User is not enrolled already
+                    // Configure button for enrolling
                     $button.text('Enroll');
                     $button.addClass('btn-primary');
                     $button.addClass('course-enroll-btn');
@@ -95,7 +99,7 @@ function createCard(course, archive=false){
 
 // API CALLS 
 
-// Fetch user enrollements
+// Fetch user enrollements: Retrieves courses the current user is enrolled in
 async function FetchUserEnrollments(targetID){
     const archiveStatus = $('#archive-switch').val();
     archive = false;
@@ -105,7 +109,7 @@ async function FetchUserEnrollments(targetID){
     $.ajax({
         url: 'api/user-enrollments',
         type: 'POST',
-        data: { "userID" : -1}, // IF ID is -1, it grabs the users sessionID
+        data: { "userID" : -1}, // -1 indicates grabbing the session user ID
         success: function(courses) {
             var added = false;
             courses.forEach(course => {
@@ -116,6 +120,7 @@ async function FetchUserEnrollments(targetID){
                 }
             });
 
+            // If no courses matched the filters, display an alert
             if (!added){
                 $(`#${targetID}`).removeClass('card-grid');
                 $(`#${targetID}`).html(`
@@ -132,7 +137,7 @@ async function FetchUserEnrollments(targetID){
     });
 }
 
-// Enroll
+// Enroll: Handles the enrollment click event and updates the UI
 $(document).on("click", ".course-enroll-btn", function (e) {
     const courseID = $(this).attr("course-id");
 
@@ -142,7 +147,7 @@ $(document).on("click", ".course-enroll-btn", function (e) {
         data: { courseID: courseID },
         success: function(res) {
             alert(res);
-            updateSingleCard(courseID);
+            updateSingleCard(courseID); // Refresh the specific card
             Swal.fire({
                 title: "Success!",
                 text: "Enrolled to Course!",
@@ -156,7 +161,7 @@ $(document).on("click", ".course-enroll-btn", function (e) {
     });
 });
 
-//Unenroll
+//Unenroll: Handles the unenrollment click event and handles UI cleanup
 $(document).on("click", ".course-unenroll-btn", function (e) {
     const courseID = $(this).attr("course-id");
 
@@ -169,6 +174,7 @@ $(document).on("click", ".course-unenroll-btn", function (e) {
             
             pageType = getPageType();
             
+            // Logic to determine whether to refresh one card or the whole container
             if (pageType == "course-view") { updateSingleCard(courseID);}
             if (pageType == "enrollment-view") {LoadCards("courses-container");}
 

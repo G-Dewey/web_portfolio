@@ -1,19 +1,24 @@
+/* Import color scheme variables */
 @import url("colour-scheme.css");
 
+/* Filter bar item styling */
 .filter-bar-item{
     height: 45px;
 }
 
+/* Course card styling */
 .course-card{
     width: 300px;
     background-color: var(--surface-5);
     margin: 0;
 }
 
+/* Dashboard course card - full width variant */
 .course-card-dash{
     width: 100%;
 }
 
+/* Difficulty badge base styling */
 .difficulty{
     padding: 0.25rem 1rem 0.25rem 1rem;
     font-weight: bold;
@@ -21,24 +26,29 @@
     width: 120px;
 }
 
+/* Rookie difficulty level - green */
 .rookie{
     background-color: green;
     padding: 0.25rem 1.2rem 0.25rem 1.2rem;
 }
 
+/* Amateur difficulty level - orange */
 .amateur{
     background-color: rgb(194, 105, 3);
 }
 
+/* Challenger difficulty level - red */
 .challenger{
     background-color: rgb(201, 13, 0);
 }
 
+/* Pro difficulty level - purple */
 .pro{
     background-color: rgb(161, 0, 201);
     padding: 0.25rem 1.8rem 0.25rem 1.8rem;
 }
 
+/* Card grid layout with 4 columns */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(4, 300px); 
@@ -50,7 +60,7 @@
     margin-right: auto;
 }
 
-/* Responsiveness: Adjust columns based on screen size */
+/* Responsive breakpoints for smaller screens */
 @media (max-width: 1500px) {
     .card-grid { grid-template-columns: repeat(3, max-content); }
 }
@@ -63,11 +73,13 @@
     .card-grid { grid-template-columns: max-content }
 }
 
+/* Modal image constraints */
 .course-modal-img{
     max-width: 100%;
     max-height: 300px;
 }
 
+/* Time label styling */
 .time-lable{
     width:95px;
 }

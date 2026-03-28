@@ -1,9 +1,12 @@
+/* Import global styles */
 @import url('style.css');
 
+/* Full viewport background image with overlay */
 .bg-img{
     min-height: 100vh;
     min-width: 100vw;
 
+    /* Gradient overlay on top of background image */
     background: linear-gradient(
         var(--overlay), 
         var(--overlay)

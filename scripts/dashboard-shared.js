@@ -1,4 +1,5 @@
 // Gets the next course
+// Fetches all enrollments for the current user and appends only the first upcoming course found
 async function appendNextCourse(targetID){
     $.ajax({
         url: 'api/user-enrollments',
@@ -6,6 +7,7 @@ async function appendNextCourse(targetID){
         data: { "userID" : -1}, // IF ID is -1, it grabs the users sessionID
         success: function(courses) {
             var added = false;
+            // Iterate through courses and break after the first valid upcoming card is created
             for (const course of courses){
                 $card = createCard(course);             
                 if($card != false){
@@ -15,6 +17,7 @@ async function appendNextCourse(targetID){
                 }
             }
 
+            // Display a feedback message if no upcoming enrollments are found
             if (!added){
                 $(`#${targetID}`).html(`
                     <div class="alert alert-info text-center w-100 mt-4">
@@ -31,6 +34,7 @@ async function appendNextCourse(targetID){
 }
 
 // Checks date
+// Returns true if the course date is today or in the future
 function afterToday(date){
     if (date == "0000-00-00"){ 
         return false;
@@ -47,7 +51,9 @@ function afterToday(date){
 }
 
 // Creates the card for the next course
+// Constructs the jQuery object for the course card, including difficulty mapping and duration formatting
 function createCard(course){
+    // Validation: Only create cards for courses that haven't passed yet
     if (!afterToday(course.date)) {return false;}
 
     const $card = $(`
@@ -73,10 +79,12 @@ function createCard(course){
         </div>
     `);
 
+    // Attribute and text population
     $card.attr('id', genCardID(course.courseID));
 
     $card.find('.card-title').text(course.title || "Untitled Course");
     
+    // Difficulty level styling
     const diffLevel = course.level !== undefined ? course.level : 0;
     const diffData = difficultyMap[diffLevel] || difficultyMap[0];
 
@@ -84,6 +92,7 @@ function createCard(course){
         .text(diffData.label)
         .addClass(diffData.class);
 
+    // Duration calculation and unit pluralization
     hrsDuration = +(course.duration/60).toFixed(1);
 
     if (hrsDuration == 1){
@@ -93,7 +102,7 @@ function createCard(course){
         $card.find('.time-unit').text("hours")
     }
 
-
+    // Final data mapping
     $card.find('.description').text(course.description)
     $card.find('.duration').text(hrsDuration || "0");
     $card.find('.enrolled').text(course.enrolled || "0");

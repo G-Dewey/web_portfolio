@@ -1,7 +1,10 @@
 // ADD CARD
+// Constructs a jQuery object representing a course card with data and action buttons
 function createCard(course){
+    // Filter the course; stop if it doesn't meet criteria
     if (!filterCourse(course)) {return false;}
 
+    // Define the HTML structure for the course card
     const $card = $(`
         <div class="card course-card p-0 mb-4">
             <div class="card-body d-flex flex-column">
@@ -31,10 +34,11 @@ function createCard(course){
         </div>
     `);
 
+    // Assign unique ID and populate text content
     $card.attr('id', genCardID(course.courseID));
-
     $card.find('.card-title').text(course.title || "Untitled Course");
     
+    // Map difficulty level to labels and CSS classes
     const diffLevel = course.level !== undefined ? course.level : 0;
     const diffData = difficultyMap[diffLevel] || difficultyMap[0];
 
@@ -42,7 +46,7 @@ function createCard(course){
         .text(diffData.label)
         .addClass(diffData.class);
 
-
+    // Calculate duration in hours and handle pluralization
     hrsDuration = +(course.duration/60).toFixed(1);
 
     if (hrsDuration == 1){
@@ -52,38 +56,35 @@ function createCard(course){
         $card.find('.time-unit').text("hours")
     }
 
-
+    // Fill in remaining course details
     $card.find('.description').text(course.description)
     $card.find('.duration').text(hrsDuration || "0");
     $card.find('.enrolled').text(course.enrolled || "0");
     $card.find('.capacity').text(course.capacity || "0");
     $card.find('.date').text(formateDate(course.date) || "00/00/0000");
 
-    // 3. Attach the ID to the buttons via data attributes
+    // 3. Attach the ID to the buttons via data attributes for event handling
     $card.find('button').attr('course-id', course.courseID);
 
-    // 4. Append the fully constructed, safe card to the DOM
+    // 4. Return the fully constructed jQuery object
     return $card;
 }
 
 // COURSE CRUD
 //----------------------------------------------------------
-// View Enrollments
-
+// View Enrollments: Triggered when clicking the enrollment button on a card
 $(document).on('click', '.course-enrollments-btn', function (e) {
     const courseID = $(this).attr("course-id");
     
     const courseName = $(this).closest('.course-card').find('.card-title').text();
     $('#course-name').text(courseName);
     
-    // Show the modal
+    // Show the modal and fetch the user list
     $('#modal-course-enrollments').modal('show');
-
     fillEnrollmentTable(courseID);
 });
 
-// Get a courses enrollments
-
+// Get a courses enrollments: AJAX call to fetch and render enrolled users
 async function fillEnrollmentTable(courseID) {
     $.ajax({
         url: "api/course-enrollments",
@@ -91,13 +92,13 @@ async function fillEnrollmentTable(courseID) {
         data: {"courseID" : courseID},
         success: function (users) {
             const $tbody = $('#enrollment-list-body');
-            
             $tbody.empty();
 
             if(users.length === 0){
                 $tbody.append('<tr><td colspan="4" class="text-center text-muted">No enrollments in this course</td></tr>');
             }
             
+            // Build table rows for each enrolled user
             users.forEach(user => {
                 const $tr = $('<tr>');
                 $tr.append($('<td>').text(user.username));
@@ -123,7 +124,7 @@ async function fillEnrollmentTable(courseID) {
     });
 }
 
-// Admin Delete Enrollment
+// Admin Delete Enrollment: Removes a specific user from a course with confirmation
 $(document).on("click", ".delete-user", function (e) {
     const userID = $(this).attr("userid");
     const courseID = $(this).attr("courseid");
@@ -169,11 +170,12 @@ $(document).on("click", ".delete-user", function (e) {
 });
 
 
-// Create User
+// Create User: Functions to handle opening the modal and tracking character limits
 $('#create-course-btn').click(function (e) {
     $('#modal-create-course').modal("show");
 });
 
+// Real-time character count for Title
 $('#course-title').on('input', function() {
         let length = $(this).val().length;
         
@@ -186,6 +188,7 @@ $('#course-title').on('input', function() {
         }
     });
 
+// Real-time character count for Description
 $('#course-description').on('input', function() {
         let length = $(this).val().length;
         
@@ -198,6 +201,7 @@ $('#course-description').on('input', function() {
         }
     });
 
+// Handle submission of the Create Course form
 $('#form-create-course').submit(function (e) {
     e.preventDefault();
 
@@ -225,8 +229,7 @@ $('#form-create-course').submit(function (e) {
     closeModal("#modal-create-course")
 });
 
-//Edit course
-
+// Edit course: Fetches current course data and populates the edit modal
 $(document).on("click", ".course-edit-btn", function (e) {
     const courseID = $(this).attr("course-id");
     $.ajax({
@@ -238,11 +241,13 @@ $(document).on("click", ".course-edit-btn", function (e) {
             
             const $modal = $('#modal-edit-course');
 
+            // Ensure capacity cannot be set lower than the number of currently enrolled students
             minVal = course.enrolled
             if (minVal == 0){
                 minVal = 1;
             }
 
+            // Convert total minutes back to hours and minutes for the inputs
             durationRaw = course.duration
             durationHrs = Math.floor(durationRaw/60);
             durationMins = durationRaw % 60
@@ -266,6 +271,7 @@ $(document).on("click", ".course-edit-btn", function (e) {
     });
 });
 
+// Handle submission of the Edit Course form
 $('#form-edit-course').submit(function (e) {
     e.preventDefault();
 
@@ -296,7 +302,7 @@ $('#form-edit-course').submit(function (e) {
     closeModal("#modal-edit-course")
 });
 
-// Delete course
+// Delete course: Removes an entire course from the database with confirmation
 $(document).on("click", ".course-delete-btn", function (e) {
     const courseID = $(this).attr("course-id");
 

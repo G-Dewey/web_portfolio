@@ -1,3 +1,8 @@
+/**
+ * UI Rendering
+ */
+
+// Appends a single user row to the HTML table with data attributes for editing
 function addRow(user){
     const row = $('<tr>');
     row.append($('<td>').text(user.username));
@@ -6,6 +11,7 @@ function addRow(user){
     row.append($('<td class="capitalise hide-on-mobile">').text(user.lastName));
     row.append($('<td class="capitalise">').text(user.role));
 
+    // Define Action Buttons
     const $editBtn = $(`
         <td class="text-center">
             <button type="button" class="btn button-warning edit-user"><i class="bi bi-pencil-square"></i></button>
@@ -18,6 +24,7 @@ function addRow(user){
         </td>
     `);
 
+    // Store user data directly on the button for easy access during the edit event
     $editBtn.find('button').attr({
         'userid': user.userID,
         'email': user.email,
@@ -30,10 +37,14 @@ function addRow(user){
     $deleteBtn.find('button').attr('userid', user.userID);
 
     row.append($editBtn, $deleteBtn);
-
     $('#table-users tbody').append(row);
 }
 
+/**
+ * Data Fetching & Filtering
+ */
+
+// Retrieves the user list and applies role-based filters
 async function FetchUserTable(){
     try {
         const users = await $.get("api/get-users");
@@ -41,13 +52,14 @@ async function FetchUserTable(){
         var userCount = 0;
         var adminCount = 0
 
+        // Get current filter state from radio buttons
         const filterValue = $('input[name="role-filter"]:checked').attr('id');
 
         $('#table-users tbody').empty();
-
         var rowAdded = false;
 
         users.forEach(user => {
+            // Count and filter based on 'admin' vs 'user' roles
             if (user['role'] == "admin"){
                 adminCount += 1;
                 if (filterValue == "filter-all" || filterValue == "filter-admin") { 
@@ -64,6 +76,7 @@ async function FetchUserTable(){
             }
         });
 
+        // Show placeholder if table is empty after filtering
         if (!rowAdded){
             $('#table-users tbody').append(`
                 <tr>
@@ -72,6 +85,7 @@ async function FetchUserTable(){
             `);
         }
 
+        // Update dashboard counter metrics
         $('#total-count').text(adminCount+userCount);
         $('#user-count').text(userCount);
         $('#admin-count').text(adminCount);
@@ -81,35 +95,23 @@ async function FetchUserTable(){
     }
 }
 
+// Refresh table whenever the filter changes
 $(document).ready(function() {
     $('input[name="role-filter"]').on('change', function() {
         FetchUserTable();
     });
 });
 
-function closeModal(modalID) {
-    const modalEle = $(modalID);
-    
-    try{
-        const form = modalEle.find('form');
-        form[0].reset();
-    }
-    catch(error){
-        alert(error)
-    }
-    finally{
-        modalEle.modal("hide")
-    }
-}
+/**
+ * Create User Logic
+ */
 
-// Create User
 $('#create-user-btn').click(function (e) {
     $('#modal-create-user').modal("show");
 });
 
 $('#form-create-user').submit(function (e) {
     e.preventDefault();
-
     const formData = $('#form-create-user').serialize();
 
     $.ajax({
@@ -133,7 +135,11 @@ $('#form-create-user').submit(function (e) {
     closeModal("#modal-create-user")
 });
 
-// Edit User
+/**
+ * Edit User Logic
+ */
+
+// Delegate click event for dynamically generated edit buttons
 $(document).on("click", ".edit-user", function (e) {
     const userID = $(this).attr("userid");
     const email = $(this).attr("email");
@@ -142,9 +148,8 @@ $(document).on("click", ".edit-user", function (e) {
     const username = $(this).attr("username");
     const role = $(this).attr("role");
 
-    // Set the hidden input value
+    // Populate Modal inputs with existing user data
     $("#edit-user-id").val(userID);
-
     $("#edit-user-title").text(`Edit ${username}`)
     $("#edit-first-name").val(firstName);
     $("#edit-last-name").val(lastName);
@@ -152,6 +157,7 @@ $(document).on("click", ".edit-user", function (e) {
     $("#edit-email").val(email);
     $("#edit-access-level").val(role);
     
+    // Reset password toggle state
     $('#toggle-password').prop('checked', false);
     $('#password-container').hide();
     $('#edit-password').val('');
@@ -161,7 +167,6 @@ $(document).on("click", ".edit-user", function (e) {
 
 $('#form-edit-user').submit(function (e) {
     e.preventDefault();
-
     const formData = $('#form-edit-user').serialize();
 
     $.ajax({
@@ -185,6 +190,7 @@ $('#form-edit-user').submit(function (e) {
     closeModal("#modal-edit-user")
 });
 
+// UI logic for conditional password updating
 $(document).on("change", "#toggle-password", function() {
     if ($(this).is(":checked")) {
         $('#password-container').slideDown();
@@ -194,10 +200,14 @@ $(document).on("change", "#toggle-password", function() {
     }
 });
 
-// Delete User
+/**
+ * Delete User Logic
+ */
+
 $(document).on("click", ".delete-user", function (e) {
     const userID = $(this).attr("userid");
 
+    // Require confirmation before destructive API call
     Swal.fire({
                 title: "User Deletion",
                 text: "Are you sure you want to delete this user?",
@@ -235,3 +245,21 @@ $(document).on("click", ".delete-user", function (e) {
         }
     });
 });
+
+/**
+ * Helpers
+ */
+
+function closeModal(modalID) {
+    const modalEle = $(modalID);
+    try{
+        const form = modalEle.find('form');
+        form[0].reset();
+    }
+    catch(error){
+        alert(error)
+    }
+    finally{
+        modalEle.modal("hide")
+    }
+}

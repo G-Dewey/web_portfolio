@@ -1,4 +1,5 @@
 // UTILS
+// Mapping object to associate difficulty integers with UI labels and CSS classes
 const difficultyMap = {
     0: { label: "N/A", class: "difficulty-na" },
     1: { label: "Rookie", class: "rookie" },
@@ -7,6 +8,7 @@ const difficultyMap = {
     4: { label: "Pro", class: "pro" }
 };
 
+// Main fetcher: Grabs all courses from the API and renders them into the grid
 async function FetchCourseCards(targetID){
     const courses = await $.get("api/get-courses");
 
@@ -22,6 +24,7 @@ async function FetchCourseCards(targetID){
         }
     });
 
+    // Show an info alert if no courses pass the filters
     if (!added){
         $(`#${targetID}`).removeClass('card-grid');
         $(`#${targetID}`).html(`
@@ -33,6 +36,7 @@ async function FetchCourseCards(targetID){
     }
 }
 
+// Targeted update: Refreshes a single course card in the DOM after an edit or action
 async function updateSingleCard(courseID) {
     $.ajax({
         url: 'api/get-single-course',
@@ -52,6 +56,7 @@ async function updateSingleCard(courseID) {
     });
 }
 
+// Date Logic: Checks if a provided date string is today or in the future
 function afterToday(date){
     if (date == "0000-00-00"){ 
         return false;
@@ -68,17 +73,19 @@ function afterToday(date){
     }
 }
 
+// Helper to standardize card element IDs
 function genCardID(courseID){
     return "course-card-" + courseID;
 }
 
-// Converts from YYYY-MM-DD to DD/MM/YYYY
+// Formatting: Converts from YYYY-MM-DD to DD/MM/YYYY
 function formateDate(date){
     date = String(date);
     const parts = date.split('-');
     return `${parts[2]}/${parts[1]}/${parts[0]}`;
 }
 
+// UI Management: Resets forms and hides Bootstrap modals
 function closeModal(modalID) {
     const modalEle = $(modalID);
     
@@ -94,10 +101,12 @@ function closeModal(modalID) {
     }
 }
 
+// Context Helper: Determines if we are looking at all courses or user enrollments
 function getPageType(){
     return $('#page-type').val();
 }
 
+// High-level Orchestrator: Clears the container and triggers the appropriate fetch
 async function LoadCards(targetID){
     $('#' + targetID).empty();
 
@@ -107,7 +116,8 @@ async function LoadCards(targetID){
     if (pageType == "enrollment-view") { FetchUserEnrollments(targetID);}
 }
 
-// SEARCHERS
+// SEARCHERS/EVENT HANDLERS
+// Handle timespan filter dropdown changes
 $(document).on('click', '.timespan-opt', function(e) {
     e.preventDefault();
     
@@ -120,6 +130,7 @@ $(document).on('click', '.timespan-opt', function(e) {
     LoadCards("courses-container");
 });
 
+// Handle difficulty level filter dropdown changes
 $(document).on('click', '.level-opt', function(e) {
     e.preventDefault();
     
@@ -131,10 +142,12 @@ $(document).on('click', '.level-opt', function(e) {
     LoadCards("courses-container");
 });
 
+// Trigger re-render on search bar keystrokes
 $("#searchFilter").on("keyup", function() {
     LoadCards("courses-container");
 });
 
+// Toggle between upcoming courses and the archive
 $('#archive-switch').on('click', function() {
     const btn = $(this);
     
@@ -156,6 +169,7 @@ $('#archive-switch').on('click', function() {
 });
 
 // FILTERS 
+// Boolean check for whether a course falls into the selected timespan (Upcoming/Past/All)
 function dateFilter(course){
     const dateFilter = $('#filterTimespan').data('current-value') || 'All';
 
@@ -174,6 +188,7 @@ function dateFilter(course){
     return false;
 }
 
+// Boolean check for title matching search string
 function searchFilter(course){
     const filterValue = $("#searchFilter").val().toLowerCase();
     const courseTitle = course.title.toLowerCase();
@@ -184,6 +199,7 @@ function searchFilter(course){
     return false;
 }
 
+// Boolean check for difficulty level match
 function levelFilter(course){
     const levelFilter = ($('#filterLevel').data('current-value') || 'any').toLowerCase();
     const diffLevel = course.level;
@@ -195,6 +211,7 @@ function levelFilter(course){
     return false;
 }
 
+// Master filter aggregator
 function filterCourse(course){
     return (dateFilter(course) && searchFilter(course) && levelFilter(course));
 }
