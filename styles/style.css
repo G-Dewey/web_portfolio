@@ -1,0 +1,278 @@
+@import url('colour-scheme.css');
+
+/* ============================================================================
+   BASE STYLES
+   ============================================================================ */
+
+body {
+  background-color: var(--surface-1);
+}
+
+/* ============================================================================
+   LAYOUT
+   ============================================================================ */
+
+.main-container {
+  min-height: calc(100vh - 100px);
+  margin-top: 100px;
+  width: 100vw;
+  display: flex;
+  padding: 2.5vh 1rem;
+}
+
+.main-content {
+  width: clamp(200px, 90vw, 1500px);
+  max-width: 95vw;
+  margin-bottom: auto;
+}
+
+/* ============================================================================
+   TEXT UTILITIES
+   ============================================================================ */
+
+.capitalise { 
+  text-transform: capitalize; 
+}
+
+.error-text {
+  color: var(--danger-2);
+}
+
+/* ============================================================================
+   COLOR UTILITIES
+   ============================================================================ */
+
+.col-dark {
+  background-color: var(--dark);
+  color: white;
+}
+
+.col-surface-2 {
+  background-color: var(--surface-2);
+}
+
+.col-surface-3 {
+  background-color: var(--surface-3);
+}
+
+.col-surface-4 {
+  background-color: var(--surface-4);
+}
+
+.col-surface-5 {
+  background-color: var(--surface-5);
+}
+
+.col-surface-5:hover {
+  background-color: var(--surface-6);
+}
+
+/* ============================================================================
+   TILES
+   ============================================================================ */
+
+.primary-tile {
+  background-color: var(--surface-2);
+}
+
+.primary-tile input {
+  background-color: var(--surface-3);
+}
+
+.secondary-tile {
+  background-color: var(--surface-3);
+}
+
+.secondary-tile input {
+  background-color: var(--surface-4);
+  border: 2px solid var(--surface-5);
+}
+
+.secondary-tile-border {
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: block;
+}
+
+.secondary-tile-border:has(.filter-radio:checked) {
+  border-color: var(--primary-1);
+  box-shadow: 0 0 10px rgba(var(--primary-1-rgb), 0.2); 
+}
+
+.secondary-tile-border:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================================================
+   BUTTONS
+   ============================================================================ */
+
+.button-danger {
+  background-color: var(--danger-2);
+}
+
+.button-danger:hover {
+  background-color: var(--danger-1);
+}
+
+.button-warning {
+  background-color: var(--warning-2);
+}
+
+.button-warning:hover {
+  background-color: var(--warning-1);
+}
+
+.btn-square {
+  width: 45px;
+  height: 45px;
+  font-size: 45px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center; 
+}
+
+.btn-add-user {
+  color: white;
+  background-color: var(--success-1);
+}
+
+.btn-add-user:hover {
+  background-color: var(--success-2);
+}
+
+/* ============================================================================
+   TABLES
+   ============================================================================ */
+
+td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+table {
+  overflow: hidden;
+}
+
+th {
+  position: sticky;
+}
+
+.button-col {
+  width: 50px;
+  padding: 10px;
+  vertical-align: middle;
+}
+
+/* ============================================================================
+   ICONS
+   ============================================================================ */
+
+.icon {
+  width: 50px;
+  height: 50px;
+}
+
+.icon i {
+  font-size: 50px;
+}
+
+/* ============================================================================
+   FORM ELEMENTS
+   ============================================================================ */
+
+.filter-radio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
+
+/* Tablets and small desktops */
+@media (max-width: 768px) {
+  .main-container {
+    margin-top: 100px;
+    padding: 2.5vh 0.5rem;
+  }
+
+  /* Hide images on mobile for filter cards */
+  .secondary-tile-border .icon {
+    display: none;
+  }
+
+  /* Compact filter cards on mobile */
+  .secondary-tile-border {
+    margin: 0.25rem !important;
+    padding: 0.75rem !important;
+  }
+
+  /* Make "Add User" button full width on mobile */
+  #create-user-btn {
+    margin-top: 0.5rem;
+  }
+
+  /* Make table scrollable horizontally */
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Adjust table font size for mobile */
+  table {
+    font-size: 0.875rem;
+  }
+
+  .button-col {
+    width: 40px;
+    padding: 5px;
+  }
+
+  .btn-square {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+  }
+
+  /* Adjust stat card text sizes */
+  .secondary-tile-border .fs-2 {
+    font-size: 1.25rem !important;
+  }
+
+  .secondary-tile-border .fs-5 {
+    font-size: 0.75rem !important;
+  }
+
+  /* Reduce top margin on count */
+  .secondary-tile-border .mt-2 {
+    margin-top: 0.25rem !important;
+  }
+
+  /* Stack modal content better on mobile */
+  .modal-dialog {
+    margin: 0.5rem;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 576px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  .secondary-tile-border {
+    padding: 1rem !important;
+  }
+
+  /* Hide less critical table columns on very small screens */
+  .hide-on-mobile {
+    display: none;
+  }
+}

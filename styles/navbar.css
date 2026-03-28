@@ -1,0 +1,54 @@
+@import url('colour-scheme.css');
+
+
+.navbar-config{
+    height: 100px;
+    background-color: var(--surface-2);
+    transition: all 0.3s ease;
+}
+
+.navbar-options{
+    background-color: var(--surface-3);
+    color: var(--text);
+}
+
+.btn-logout{
+    height: 80%;
+    width:auto;
+}
+
+.navbar-text{
+    color: var(--text);
+}
+
+@media (max-width: 1400px) {
+    .navbar-options {
+        border-radius: 15px 15px 0px 0px !important;
+        margin-top: 1rem;
+        margin-bottom: 0px;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .justify-content-end {
+        justify-content: center !important;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .navbar-collapse {
+        /* Add some padding to the bottom of the whole menu so the button isn't at the very edge */
+        padding-bottom: 1.5rem;
+    }
+
+    #logout-btn{
+        width: 100%; 
+        margin-top: 0px;
+        padding: 12px;
+        border-radius: 0px 0px 15px 15px !important;
+        background-color: var(--surface-3);
+        color: var(--text);
+        font-weight: inherit; 
+        text-transform: none;
+    }
+}

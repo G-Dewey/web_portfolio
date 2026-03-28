@@ -1,0 +1,115 @@
+NOT TO BE INCLUDED IN FINAL 
+
+
+DARK
+/** Base colors */
+--clr-dark-a0: #000000;
+--clr-light-a0: #ffffff;
+
+/** Theme primary colors */
+--clr-primary-a0: #5ba8f0;
+--clr-primary-a10: #72b1f2;
+--clr-primary-a20: #87bbf4;
+--clr-primary-a30: #9ac4f6;
+--clr-primary-a40: #accef7;
+--clr-primary-a50: #bdd7f9;
+
+/** Theme surface colors */
+--clr-surface-a0: #121212;
+--clr-surface-a10: #282828;
+--clr-surface-a20: #3f3f3f;
+--clr-surface-a30: #575757;
+--clr-surface-a40: #717171;
+--clr-surface-a50: #8b8b8b;
+
+/** Theme tonal surface colors */
+--clr-surface-tonal-a0: #1b1f25;
+--clr-surface-tonal-a10: #303439;
+--clr-surface-tonal-a20: #464a4f;
+--clr-surface-tonal-a30: #5e6166;
+--clr-surface-tonal-a40: #77797e;
+--clr-surface-tonal-a50: #919396;
+
+/** Success colors */
+--clr-success-a0: #22946e;
+--clr-success-a10: #47d5a6;
+--clr-success-a20: #9ae8ce;
+
+/** Warning colors */
+--clr-warning-a0: #a87a2a;
+--clr-warning-a10: #d7ac61;
+--clr-warning-a20: #ecd7b2;
+
+/** Danger colors */
+--clr-danger-a0: #9c2121;
+--clr-danger-a10: #d94a4a;
+--clr-danger-a20: #eb9e9e;
+
+/** Info colors */
+--clr-info-a0: #21498a;
+--clr-info-a10: #4077d1;
+--clr-info-a20: #92b2e5;
+
+/** Examples */
+.bg-primary {
+ color: var(--clr-primary-a50);
+ background-color: var(--clr-surface-a0);
+}
+
+
+---------------------------------------------------------------
+
+light
+/** Base colors */
+--clr-dark-a0: #000000;
+--clr-light-a0: #ffffff;
+
+/** Theme primary colors */
+--clr-primary-a0: #114bf7;
+--clr-primary-a10: #1c43d8;
+--clr-primary-a20: #213bbb;
+--clr-primary-a30: #22339e;
+--clr-primary-a40: #222b82;
+--clr-primary-a50: #202467;
+
+/** Theme surface colors */
+--clr-surface-a0: #ffffff;
+--clr-surface-a10: #f0f0f0;
+--clr-surface-a20: #e1e1e1;
+--clr-surface-a30: #d3d3d3;
+--clr-surface-a40: #c5c5c5;
+--clr-surface-a50: #b6b6b6;
+
+/** Theme tonal surface colors */
+--clr-surface-tonal-a0: #efecff;
+--clr-surface-tonal-a10: #e2dff0;
+--clr-surface-tonal-a20: #d5d3e1;
+--clr-surface-tonal-a30: #c9c7d3;
+--clr-surface-tonal-a40: #bcbbc5;
+--clr-surface-tonal-a50: #b0aeb6;
+
+/** Success colors */
+--clr-success-a0: #1b7f5c;
+--clr-success-a10: #28be8a;
+--clr-success-a20: #58dbad;
+
+/** Warning colors */
+--clr-warning-a0: #b8871f;
+--clr-warning-a10: #dfae44;
+--clr-warning-a20: #ebca85;
+
+/** Danger colors */
+--clr-danger-a0: #b13535;
+--clr-danger-a10: #d06262;
+--clr-danger-a20: #e29d9d;
+
+/** Info colors */
+--clr-info-a0: #1e56a3;
+--clr-info-a10: #347ada;
+--clr-info-a20: #74a4e6;
+
+/** Examples */
+.bg-primary {
+ color: var(--clr-primary-a50);
+ background-color: var(--clr-surface-a0);
+}

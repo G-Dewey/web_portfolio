@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^(.*)$ /web_portfolio [R=301,L]

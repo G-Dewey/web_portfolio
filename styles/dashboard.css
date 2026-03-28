@@ -1,0 +1,13 @@
+.dashboard-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none; /* Removes underline from links */
+    color: inherit;       /* Keeps text color consistent */
+    display: block;
+    cursor: pointer;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-4px); /* The "lift" effect */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2) !important; /* Enhanced shadow */
+    color: inherit;
+}

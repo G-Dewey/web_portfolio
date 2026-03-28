@@ -1,0 +1,21 @@
+<?php
+
+if (!isset($_POST['courseID'])){
+    http_response_code(400);
+    echo "Required Fields are missing";
+    die();
+}
+
+require_once("pages/_connect.php");
+$courseID = $_POST['courseID'];
+
+// Ensure that enrollements are deleted with that course id
+
+$SQL = "DELETE FROM courses WHERE `courses`.`courseID` = ?;";
+$stmt = mysqli_prepare($connect, $SQL);
+mysqli_stmt_bind_param($stmt, "i", $courseID);
+mysqli_stmt_execute($stmt);
+
+echo"Course has been deleted";
+die();
+?>
