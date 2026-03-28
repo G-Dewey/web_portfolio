@@ -86,7 +86,7 @@ function emailConfirmation($email, $enrolled, $courseTitle, $firstName) {
     $subject = "$enrolled Confirmation";
     $subject = ucfirst($subject);
     $message = "Hello $firstName!\n You have $enrolled in $courseTitle was successful.";
-    $headers = "From: webmaster@kartpro.com" . "\r\n" .
+    $headers = "From: webmaster@ws410678-wad.remote.ac" . "\r\n" .
                "X-Mailer: PHP/" . phpversion();
 
     return mail($email, $subject, $message, $headers);
