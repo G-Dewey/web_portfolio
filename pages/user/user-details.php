@@ -62,18 +62,15 @@
     </div>
 
     <!-- External libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" 
+        integrity="sha256-dQbI9NheRwerRvmFjwxuZeMxa50vEi3PSFudvznVp6w=" 
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
+        crossorigin="anonymous"></script>
     
     <!-- Custom scripts -->
     <script src="scripts/theme.js"></script>
     <script src="scripts/navbar.js"></script>
     <script src="scripts/user-details.js"></script>
-    
-    <!-- Load user details on page ready -->
-    <script>
-        $(document).ready(function() {
-            populateDetails();
-        });
-    </script>
 </body>

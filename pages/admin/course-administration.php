@@ -305,27 +305,16 @@
     </div>
 
     <!-- External JavaScript libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" 
+        integrity="sha256-dQbI9NheRwerRvmFjwxuZeMxa50vEi3PSFudvznVp6w=" 
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
+        crossorigin="anonymous"></script>
     
     <!-- Custom JavaScript files -->
     <script src="scripts/theme.js"></script>
     <script src="scripts/admin-course-api.js"></script>
     <script src="scripts/course-shared.js"></script>
     <script src="scripts/navbar.js"></script>
-    
-    <!-- Initialize page on document ready -->
-    <script>
-        // Sets the minimum date for the models
-
-        const today = new Date();
-        const minDate = today.toISOString().split('T')[0];
-
-        $('#course-date').attr('min', minDate);
-        
-        // Load course cards when page is ready
-        $(document).ready(function() {
-            LoadCards("courses-container");
-        });
-    </script>
 </body>

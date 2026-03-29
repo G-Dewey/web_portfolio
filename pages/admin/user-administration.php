@@ -242,17 +242,15 @@
         </div>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" 
+        integrity="sha256-dQbI9NheRwerRvmFjwxuZeMxa50vEi3PSFudvznVp6w=" 
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
+        crossorigin="anonymous"></script>
+    
     <script src="scripts/user-api.js"></script>
     <script src="scripts/theme.js"></script>
     <script src="scripts/manage-users.js"></script>
     <script src="scripts/navbar.js"></script>
-    
-    <!-- Initialize user table on page load -->
-    <script>
-        $(document).ready(function() {
-        FetchUserTable(); // Fetch and display user table data
-    });
-    </script>
 </body>
