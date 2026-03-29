@@ -10,4 +10,7 @@ header("Content-Security-Policy: " .
     "base-uri 'self'; " .
     "form-action 'self';"
 );
+header("Strict-Transport-Security: max-age=31536000; includeSubDomains; preload");
+header("Referrer-Policy: strict-origin-when-cross-origin");
+header("X-Content-Type-Options: nosniff");
 ?>
