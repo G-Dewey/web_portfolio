@@ -289,7 +289,7 @@ $('#form-edit-course').submit(function (e) {
             closeModal("#modal-edit-course");
             Swal.fire({
                 title: "Success!",
-                text: "User Edited",
+                text: "Course Edited",
                 icon: "success",
                 theme: localStorage.getItem('theme')
             });

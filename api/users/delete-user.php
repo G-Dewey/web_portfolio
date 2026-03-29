@@ -19,5 +19,21 @@ $SQL = "DELETE FROM users WHERE `users`.`userID` = ?;";
 $stmt = mysqli_prepare($connect, $SQL);
 mysqli_stmt_bind_param($stmt, "i", $userID);
 mysqli_stmt_execute($stmt);
+
+// Removes all enrollments tied to that user 
+try{
+    $SQL = "DELETE from `enrollments`
+            WHERE `enrollments`.`userID` = ?";
+
+    $stmt = mysqli_prepare($connect, $SQL);
+    
+    mysqli_stmt_bind_param($stmt, "i", $userID);
+    mysqli_stmt_execute($stmt);
+
+} catch (Exception $e) {
+    // No error code as it has still be deleted
+    die();
+}
+
 die();
 ?>
