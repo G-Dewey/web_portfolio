@@ -26,7 +26,7 @@
       <div class="d-flex justify-content-xxl-end mt-0 mt-xxl-0"> 
         <ul class="navbar-nav w-100"> 
           <li class="nav-item text-center"> 
-            <button class="btn btn-danger+ rounded-pill pt-0 py-xxl-2 px-4 w-100-mobile" id="logout-btn">Logout</button>
+            <button class="btn btn-danger rounded-pill pt-0 py-xxl-2 px-4 w-100-mobile" id="logout-btn">Logout</button>
           </li>
         </ul>
       </div>
