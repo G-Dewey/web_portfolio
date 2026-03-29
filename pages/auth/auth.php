@@ -1,4 +1,8 @@
 <?php
+   require 'pages/security-headers.php';
+?>
+
+<?php
 // Check if form data is present
 if (!isset($_POST['txtUsername']) || !isset($_POST['txtPassword']))
 {
@@ -30,7 +34,9 @@ $result = mysqli_stmt_get_result($stmt);
 
 // Start or resume the session
 session_set_cookie_params([
-    'secure' => true,
+    'secure'   => true,      // HTTPS only
+    'httponly' => true,      // Blocks JavaScript access (XSS protection)
+    'samesite' => 'Strict'   // Prevents CSRF attacks
 ]);
 @session_start();
 
