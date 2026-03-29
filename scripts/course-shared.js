@@ -217,6 +217,5 @@ function filterCourse(course){
 
 // Loads cards when doc is ready
 $(document).ready(function() {
-    alert("called");
     LoadCards("courses-container");
 });
