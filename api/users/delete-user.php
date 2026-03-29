@@ -46,7 +46,7 @@ try{
 
     // Update enrolled count for each affected course
     foreach ($courseIDs as $courseID) {
-        updateEnrolledCount($connect, $courseID);
+        updateEnrollmentCount($connect, $courseID);
     }
 } catch (Exception $e) {
     // No error code as it has still be deleted
