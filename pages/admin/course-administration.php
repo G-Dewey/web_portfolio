@@ -314,7 +314,9 @@
         // Sets the minimum date for the models
 
         const today = new Date();
-        $('#course-date').attr('min', today);
+        const minDate = today.toISOString().split('T')[0];
+
+        $('#course-date').attr('min', minDate);
         
         // Load course cards when page is ready
         $(document).ready(function() {
