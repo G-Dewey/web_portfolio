@@ -14,13 +14,13 @@ function addRow(user){
     // Define Action Buttons
     const $editBtn = $(`
         <td class="text-center">
-            <button type="button" class="btn button-warning edit-user"><i class="bi bi-pencil-square"></i></button>
+            <button type="button" class="btn btn-warning edit-user"><i class="bi bi-pencil-square"></i></button>
         </td>
     `);
 
     const $deleteBtn = $(`
         <td class="text-center">
-            <button type="button" class="btn button-danger delete-user"><i class="bi bi-trash3"></i></button>
+            <button type="button" class="btn btn-danger delete-user"><i class="bi bi-trash3"></i></button>
         </td>
     `);
 

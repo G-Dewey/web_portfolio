@@ -108,23 +108,6 @@ body {
 /* ============================================================================
    BUTTONS
    ============================================================================ */
-
-.button-danger {
-  background-color: var(--danger-2);
-}
-
-.button-danger:hover {
-  background-color: var(--danger-1);
-}
-
-.button-warning {
-  background-color: var(--warning-2);
-}
-
-.button-warning:hover {
-  background-color: var(--warning-1);
-}
-
 .btn-square {
   width: 45px;
   height: 45px;
