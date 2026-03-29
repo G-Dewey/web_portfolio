@@ -7,7 +7,7 @@ try {
     $SQL = "SELECT COUNT(`enrollmentID`) AS `past_enrollments` 
             FROM `enrollments`
             JOIN `courses` ON `enrollments`.`courseID` = `courses`.`courseID`
-            WHERE `enrollments`.`userID` = ? AND `courses`.`date` < CURDATE();)";
+            WHERE `enrollments`.`userID` = ? AND `courses`.`date` < CURDATE()";
             
     $stmt = mysqli_prepare($connect, $SQL);
     mysqli_stmt_bind_param($stmt, "i", $userID);
