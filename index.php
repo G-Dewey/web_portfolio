@@ -1,4 +1,10 @@
 <?php
+
+session_set_cookie_params([
+    'secure'   => true,      // HTTPS only
+    'httponly' => true,      // Blocks JavaScript access (XSS protection)
+    'samesite' => 'Strict'   // Prevents CSRF attacks
+]);
 session_start();
 
 error_reporting(E_ALL & ~E_DEPRECATED);
