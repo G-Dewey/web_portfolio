@@ -86,8 +86,8 @@
     <!-- Custom scripts -->
     <script src="scripts/user-api.js"></script>
     <script src="scripts/theme.js"></script>
-    <script src="scripts/dashboard-shared.js"></script>
     <script src="scripts/dashboard.js"></script>
+    <script src="scripts/dashboard-shared.js"></script>
     <script src="scripts/course-shared.js"></script>
     <script src="scripts/navbar.js"></script>
 </body>
