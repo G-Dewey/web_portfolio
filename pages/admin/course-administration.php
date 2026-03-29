@@ -124,7 +124,7 @@
                                 <div class="mb-3 w-100">
                                     <label for="course-date" class="form-label">Date</label>
                                     <div class="w-100">
-                                        <input type="date" class="form-control" id="course-date" name="course-date" required>
+                                        <input type="date" class="form-control" id="create-course-date" name="course-date" required>
                                     </div>
                                 </div>
 
