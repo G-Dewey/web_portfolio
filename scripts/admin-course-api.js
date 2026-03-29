@@ -130,7 +130,7 @@ $(document).on("click", ".delete-user", function (e) {
     const courseID = $(this).attr("courseid");
 
     Swal.fire({
-                title: "Course Deletion",
+                title: "Enrollment Deletion",
                 text: "Are you sure you want to delete this enrollment?",
                 icon: "warning",
                 showCancelButton: true,

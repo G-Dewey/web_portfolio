@@ -31,8 +31,12 @@ try{
     if (mysqli_stmt_affected_rows($stmt) === 0) {
         http_response_code(400); 
         echo "No enrollment found to delete.";
-    die();
-}
+        die();
+    }
+
+    $courseDetails = getCourseData($connect, $courseID);
+
+    emailConfirmation($_SESSION["email"], "unenrollment", $courseDetails["title"], $_SESSION["firstName"]);
 
 } catch (Exception $e) {
     http_response_code(500);
