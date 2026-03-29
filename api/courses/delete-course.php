@@ -16,6 +16,22 @@ $stmt = mysqli_prepare($connect, $SQL);
 mysqli_stmt_bind_param($stmt, "i", $courseID);
 mysqli_stmt_execute($stmt);
 
+// Deletes all enrollments of the deleted course
+
+try{
+    $SQL = "DELETE from `enrollments`
+            WHERE `enrollments`.`courseID` = ?";
+
+    $stmt = mysqli_prepare($connect, $SQL);
+    
+    mysqli_stmt_bind_param($stmt, "i", $courseID);
+    mysqli_stmt_execute($stmt);
+    
+} catch (Exception $e) {
+    // No error code as it has still be deleted
+    die();
+}
+
 echo"Course has been deleted";
 die();
 ?>
