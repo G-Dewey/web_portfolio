@@ -346,4 +346,3 @@ const minDate = today.toISOString().split('T')[0];
 
 // Set the min attribute
 $('#create-course-date').attr('min', minDate);
-$('#course-date').attr('min', minDate);
