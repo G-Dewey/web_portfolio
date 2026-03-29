@@ -111,3 +111,7 @@ function createCard(course){
 
     return $card;
 }
+
+$(document).ready(function() {
+    populateContent();
+});

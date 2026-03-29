@@ -262,3 +262,8 @@ function closeModal(modalID) {
         modalEle.modal("hide")
     }
 }
+
+// Calls when ready
+$(document).ready(function() {
+        FetchUserTable();
+});

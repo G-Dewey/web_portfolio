@@ -214,3 +214,8 @@ function levelFilter(course){
 function filterCourse(course){
     return (dateFilter(course) && searchFilter(course) && levelFilter(course));
 }
+
+// Loads cards when doc is ready
+$(document).ready(function() {
+    LoadCards("courses-container");
+});

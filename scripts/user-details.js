@@ -41,3 +41,7 @@ async function courseDetails() {
         }
     });
 }
+
+$(document).ready(function() {
+            populateDetails();
+        });
