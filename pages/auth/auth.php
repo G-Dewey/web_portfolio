@@ -29,6 +29,9 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
 // Start or resume the session
+session_set_cookie_params([
+    'secure' => true,
+]);
 @session_start();
 
 // Check if user exists in database

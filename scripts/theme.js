@@ -1,8 +1,12 @@
 // On page load
 // Immediately apply the theme from storage to prevent a "flash" of the wrong theme
-const savedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-localStorage.setItem('theme', savedTheme);
-document.documentElement.setAttribute('data-bs-theme', savedTheme);
+
+const savedTheme = localStorage.getItem('theme');
+const defaultTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+const currentTheme = savedTheme || defaultTheme;
+
+document.documentElement.setAttribute('data-bs-theme', currentTheme);
+localStorage.setItem('theme', currentTheme);
 
 // Once HTML is ready
 $(document).ready(function() {
