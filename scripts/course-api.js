@@ -155,7 +155,12 @@ $(document).on("click", ".course-enroll-btn", function (e) {
             });
         },
         error: function(xhr, status, res) {
-            alert(`Selection failed: ${JSON.stringify(res)}`);
+            Swal.fire({
+                title: "Failed!",
+                text: "Unable to enrolled to Course! This could be due to course being at capacity",
+                icon: "errors",
+                theme: localStorage.getItem('theme')
+            });
         }
     });
 });

@@ -16,7 +16,7 @@ $userID = $_SESSION["userID"];
 
 if (!validateCourse($connect, $courseID)){
     http_response_code(400);
-    echo json_encode(["error" => "Bad Course0"]);
+    echo json_encode(["error" => "Bad Course"]);
     die();
 }
 
