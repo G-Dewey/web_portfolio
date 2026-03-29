@@ -311,6 +311,11 @@
     
     <!-- Initialize page on document ready -->
     <script>
+        // Sets the minimum date for the models
+
+        const today = new Date();
+        $('#course-date').attr('min', minDate);
+        
         // Load course cards when page is ready
         $(document).ready(function() {
             LoadCards("courses-container");
