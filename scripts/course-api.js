@@ -146,7 +146,6 @@ $(document).on("click", ".course-enroll-btn", function (e) {
         method: 'POST',
         data: { courseID: courseID },
         success: function(res) {
-            alert(res);
             updateSingleCard(courseID); // Refresh the specific card
             Swal.fire({
                 title: "Success!",

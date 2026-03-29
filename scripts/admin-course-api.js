@@ -206,7 +206,6 @@ $('#form-create-course').submit(function (e) {
     e.preventDefault();
 
     const formData = $('#form-create-course').serialize();
-    console.log(formData);
 
     $.ajax({
         url: "api/create-new-course",
@@ -237,8 +236,6 @@ $(document).on("click", ".course-edit-btn", function (e) {
         method: 'POST',
         data: { courseID: courseID },
         success: function(course) {
-            console.log(course);
-            
             const $modal = $('#modal-edit-course');
 
             // Ensure capacity cannot be set lower than the number of currently enrolled students

@@ -90,7 +90,6 @@ async function FetchUserTable(){
         $('#user-count').text(userCount);
         $('#admin-count').text(adminCount);
     } catch (error) {
-        console.error("Failed to load users:", error);
         $('#errorMessage').text("Could not load users. Please try again later.");
     }
 }
@@ -257,7 +256,7 @@ function closeModal(modalID) {
         form[0].reset();
     }
     catch(error){
-        alert(error)
+
     }
     finally{
         modalEle.modal("hide")

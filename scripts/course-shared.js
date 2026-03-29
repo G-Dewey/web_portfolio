@@ -94,7 +94,7 @@ function closeModal(modalID) {
         form[0].reset();
     }
     catch(error){
-        alert(error)
+
     }
     finally{
         modalEle.modal("hide")
@@ -179,8 +179,7 @@ function dateFilter(course){
     }
 
     after = afterToday(course.date);
-    console.log(course.title , after);
-
+    
     if ( dateFilter=="Upcoming" && after) {return true;}
     if ( dateFilter=="Past" && !after) {return true;}
     if (dateFilter=="All") {return true;}
