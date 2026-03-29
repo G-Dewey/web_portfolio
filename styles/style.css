@@ -118,15 +118,6 @@ body {
   justify-content: center; 
 }
 
-.btn-add-user {
-  color: white;
-  background-color: var(--success-1);
-}
-
-.btn-add-user:hover {
-  background-color: var(--success-2);
-}
-
 /* ============================================================================
    TABLES
    ============================================================================ */

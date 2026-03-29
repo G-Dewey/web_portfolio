@@ -258,7 +258,7 @@
                 <div class="row secondary-tile rounded mb-4 p-2 d-flex align-items-center my-1" role="search" aria-label="Course filters">
                     <!-- Create course button -->
                     <div class="col-lg-1 col-12 d-flex flex-fill my-1">
-                        <button class="btn btn-square btn-add-user flex-fill" id="create-course-btn" aria-label="Create new course">
+                        <button class="btn btn-square btn-success flex-fill" id="create-course-btn" aria-label="Create new course">
                             <i class="bi bi-plus"></i>
                         </button>
                     </div>
